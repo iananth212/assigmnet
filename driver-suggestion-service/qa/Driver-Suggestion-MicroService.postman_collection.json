@@ -1,0 +1,117 @@
+{
+	"info": {
+		"_postman_id": "060e3bcd-dbbd-478e-a344-6759b7a3c3b8",
+		"name": "Driver-Suggestion-MicroService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Save Store Details",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"storeID\": \"1234\",\n  \"latitude\": 27.876,\n  \"longitude\": -128.33\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:9080/stores",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9080",
+					"path": [
+						"stores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Publish Driver Details to Kafka Topic",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"driverID\": \"m123@gmail.com\",\n  \"latitude\": 27.876,\n  \"longitude\": -128.33\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:9080/drivers/publish",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9080",
+					"path": [
+						"drivers",
+						"publish"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get N nearest Driver Details to Store",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"driverID\": \"m123@gmail.com\",\n  \"latitude\": 27.876,\n  \"longitude\": -128.33\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:9080/drivers/nearest?storeId=1234&N=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9080",
+					"path": [
+						"drivers",
+						"nearest"
+					],
+					"query": [
+						{
+							"key": "storeId",
+							"value": "1234"
+						},
+						{
+							"key": "N",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
